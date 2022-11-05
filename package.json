@@ -1,0 +1,17 @@
+{
+  "name": "project-myrec",
+  "version": "1.0.0",
+  "description": "project my rec which manages my grades",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aurumdev",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-error-handler": "^1.1.0",
+    "mongoose": "^6.7.1"
+  }
+}
