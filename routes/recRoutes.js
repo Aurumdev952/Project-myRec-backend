@@ -12,11 +12,11 @@ const {
     getUser
 } = require('../controllers/recController');
 
-router.get('/get/:userid/:id', getRecById);
-router.get('/get/:userid/:category', getRecByCategory);
+router.get('/get/byid/:userid/:id', getRecById);
+router.get('/get/bycategory/:userid/:category', getRecByCategory);
 router.get('/get/:id', getUser);
-router.get('/get/:userid/:subject', getRecBySubject);
-router.get('/get/:userid', getAllRec);
+router.get('/get/bysubject/:userid/:subject', getRecBySubject);
+router.get('/get/all/:userid', getAllRec);
 
 router.post('/create/record', createRec);
 router.post('/create/user', createUser);

@@ -1,6 +1,13 @@
 const asyncHandler = require('express-async-handler');
 const { User, Record } = require('../modal/recModal');
 
+
+const updateRecords = asyncHandler(async (userId, recId) => {
+    return await User.findOneAndUpdate(
+    { _id: userId }, 
+    { $push: { records: recId }});
+
+    });
 // get record methods 
 const getAllUserRec = asyncHandler(async (userId) => {
     return await User
@@ -59,7 +66,24 @@ const getUserInfo = asyncHandler(async (userId) => {
 const updateRecById = asyncHandler(async (recId, updates) => {
     // add code to check if the user the record 
     // Record.updateOne({ _id: recId }, updates);
-    return await Record.findByIdAndUpdate(recId, updates)
+    return await Record.findByIdAndUpdate(recId, updates, {
+        new: true,
+    });
+    //                         function (err, docs) {
+    // if (err){
+    //     return err;
+    // }
+    // else{
+    //     return `Updated Record ${docs}`;
+    // }
+});
+// update methods
+const updateUserById = asyncHandler(async (userId, updates) => {
+    // add code to check if the user the record 
+    // Record.updateOne({ _id: recId }, updates);
+    return await User.findByIdAndUpdate(recId, updates, {
+        new: true,
+    });
     //                         function (err, docs) {
     // if (err){
     //     return err;
@@ -82,15 +106,29 @@ const deleteRecById = asyncHandler(async (recId) => {
 //         }
 //     });
 })
+const deleteUserById = asyncHandler(async (recId) => {
+    return await User.findByIdAndDelete(recId)
+//         , function (err, docs) {
+//         if (err){
+//             return err;
+//         }
+//         else{
+//             return `Deleted Record ${docs}`;
+//         }
+//     });
+})
 // userId, title, subject, value, max_value, category, date_done
 const recCreate = asyncHandler(async (createObj) => {
     
-    return await Record.create(createObj);
+    const rec = await Record.create(createObj);
+    const a = updateRecords(rec.user, rec._id);
+    return rec;
 
 });
 
 
 const userCreate = asyncHandler(async (createObj) => {
+    // console.log(createObj);
     return await User.create(createObj);
 });
 
@@ -105,5 +143,7 @@ module.exports = {
     recCreate,
     userCreate,
     getUserRecByCategory,
-    deleteRecById
+    deleteRecById,
+    updateUserById,
+    deleteUserById
 };

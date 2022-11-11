@@ -9,7 +9,9 @@ const {
     recCreate,
     userCreate,
     getUserRecByCategory,
-    deleteRecById
+    deleteRecById,
+    updateUserById,
+    deleteUserById
 } = require('./masterController');
 
 
@@ -37,7 +39,12 @@ const getRecByCategory = asyncHandler(async (req, res) => {
 
 });
 const updateRec = asyncHandler(async (req, res) => {
-    const rec = await updateRecById(req.params.id, req.body.updates);
+    const rec = await updateRecById(req.params.id, req.body);
+    res.status(200).json(rec);
+
+});
+const updateUser = asyncHandler(async (req, res) => {
+    const rec = await updateUserById(req.params.id, req.body);
     res.status(200).json(rec);
 
 });
@@ -46,14 +53,19 @@ const deleteRec = asyncHandler(async (req, res) => {
     res.status(200).json(rec);
 
 });
+const deleteUser = asyncHandler(async (req, res) => {
+    const rec = await deleteUserById(req.params.id);
+    res.status(200).json(rec);
+
+});
 const createUser = asyncHandler(async (req, res) => {
-    const user = await userCreate(req.body.userObj);
+    const user = await userCreate(req.body);
 
     res.status(200).json(user);
 
 });
 const createRec = asyncHandler(async (req, res) => {
-    const rec = await recCreate(req.body.recObj);
+    const rec = await recCreate(req.body);
 
     res.status(200).json(rec);
 
@@ -80,5 +92,7 @@ module.exports = {
     createUser,
     createRec,
     getAllRec,
-    getUser
+    getUser,
+    updateUser,
+    deleteUser
 };
