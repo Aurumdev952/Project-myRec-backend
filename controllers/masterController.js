@@ -81,7 +81,7 @@ const updateRecById = asyncHandler(async (recId, updates) => {
 const updateUserById = asyncHandler(async (userId, updates) => {
     // add code to check if the user the record 
     // Record.updateOne({ _id: recId }, updates);
-    return await User.findByIdAndUpdate(recId, updates, {
+    return await User.findByIdAndUpdate(userId, updates, {
         new: true,
     });
     //                         function (err, docs) {
@@ -106,8 +106,8 @@ const deleteRecById = asyncHandler(async (recId) => {
 //         }
 //     });
 })
-const deleteUserById = asyncHandler(async (recId) => {
-    return await User.findByIdAndDelete(recId)
+const deleteUserById = asyncHandler(async (userId) => {
+    return await User.findByIdAndDelete(userId)
 //         , function (err, docs) {
 //         if (err){
 //             return err;
