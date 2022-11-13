@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-
+mongoose.set('bufferCommands', false);
 const userSchema = mongoose.Schema({
     username: String,
     email: String,
