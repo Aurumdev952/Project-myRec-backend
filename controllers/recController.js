@@ -11,7 +11,8 @@ const {
     getUserRecByCategory,
     deleteRecById,
     updateUserById,
-    deleteUserById
+    deleteUserById,
+    validateUser
 } = require('./masterController');
 
 
@@ -82,6 +83,12 @@ const getUser = asyncHandler(async (req, res) => {
 
 });
 
+const validate = asyncHandler(async (req, res) => {
+    const data = req.body;
+    const user = await validateUser(data.email, data.password);
+    res.status(200).json(user);
+});
+
 
 module.exports = {
     getRecById,
@@ -94,5 +101,6 @@ module.exports = {
     getAllRec,
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    validate
 };

@@ -11,7 +11,8 @@ const {
     getAllRec,
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    validate
 } = require('../controllers/recController');
 
 router.get('/get/byid/:userid/:id', getRecById);
@@ -22,6 +23,7 @@ router.get('/get/all/:userid', getAllRec);
 
 router.post('/create/record', createRec);
 router.post('/create/user', createUser);
+router.post('/validate/user', validate)
 
 router.put('/update/rec/:id', updateRec);
 router.put('/update/user/:id', updateUser);

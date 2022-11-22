@@ -8,6 +8,30 @@ const updateRecords = asyncHandler(async (userId, recId) => {
     { $push: { records: recId }});
 
     });
+
+// validate user 
+const validateUser = asyncHandler(async (userMail, password) => {
+    const user = await User.findOne({ email: userMail });
+    if (user) {
+        if (user.password === password) {
+            return user;
+        } else {
+            return {
+                status: 'not-found',
+                message: {
+                    error: 'incorrect password'
+                }
+            }
+        }
+    } else {
+        return {
+            status: 'not-found',
+            message: {
+                error: 'User does not exist'
+            }
+        }
+    }
+});
 // get record methods 
 const getAllUserRec = asyncHandler(async (userId) => {
     return await User
@@ -145,5 +169,6 @@ module.exports = {
     getUserRecByCategory,
     deleteRecById,
     updateUserById,
-    deleteUserById
+    deleteUserById,
+    validateUser
 };
