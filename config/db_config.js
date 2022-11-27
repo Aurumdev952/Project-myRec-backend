@@ -5,7 +5,7 @@ const local_url = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelect
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(local_url, { useNewUrlParser: true, useUnifiedTopology: true });
+        const conn = await mongoose.connect(atlas_url, { useNewUrlParser: true, useUnifiedTopology: true });
         // const conn = await mongoose.connect(process.env.MONGO_URI);
 
         console.log(`mongoDB connected to${conn.connection.host}`);
