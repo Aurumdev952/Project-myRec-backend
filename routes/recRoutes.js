@@ -12,10 +12,12 @@ const {
     getUser,
     updateUser,
     deleteUser,
-    validate
+    validate,
+    getRecByTitle
 } = require('../controllers/recController');
 
 router.get('/get/byid/:userid/:id', getRecById);
+router.get('/get/bytitle/:userid/:title', getRecByTitle);
 router.get('/get/bycategory/:userid/:category', getRecByCategory);
 router.get('/get/:id', getUser);
 router.get('/get/bysubject/:userid/:subject', getRecBySubject);

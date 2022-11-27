@@ -12,7 +12,8 @@ const {
     deleteRecById,
     updateUserById,
     deleteUserById,
-    validateUser
+    validateUser,
+    getUserRecByTitle
 } = require('./masterController');
 
 
@@ -25,6 +26,18 @@ const getRecById = asyncHandler(async (req, res) => {
         
     // }
     const rec = await getUserRecById(req.params.userid , req.params.id);
+
+    res.status(200).json(rec);
+    
+});
+const getRecByTitle = asyncHandler(async (req, res) => {
+    // try {
+    //     getUserRecById()
+        
+    // } catch (error) {
+        
+    // }
+    const rec = await getUserRecByTitle(req.params.userid , req.params.title);
 
     res.status(200).json(rec);
     
@@ -102,5 +115,6 @@ module.exports = {
     getUser,
     updateUser,
     deleteUser,
-    validate
+    validate,
+    getRecByTitle
 };

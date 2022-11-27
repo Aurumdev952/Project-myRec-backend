@@ -57,6 +57,18 @@ const getUserRecById = asyncHandler(async (userId, recId) => {
     //     return user;
     //  });
 });
+const getUserRecByTitle = asyncHandler(async (userId, recTitle) => {
+    // nested populate
+    return await User
+    .findOne({_id: userId})
+    .populate({
+    path: "records",
+    match: { title: {$eq: recTitle}}
+    })
+    // .then(user => {
+    //     return user;
+    //  });
+});
 
 const getUserRecBySubject = asyncHandler(async (userId, subject) => {
     return await User
@@ -170,5 +182,6 @@ module.exports = {
     deleteRecById,
     updateUserById,
     deleteUserById,
-    validateUser
+    validateUser,
+    getUserRecByTitle
 };
