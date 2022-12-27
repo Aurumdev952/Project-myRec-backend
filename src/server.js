@@ -1,11 +1,12 @@
+require("dotenv-safe").config();
 const express = require("express");
-const dotenv = require("dotenv").config();
-const port = process.env.PORT || 3000;
+
 const { errorHandler } = require("./middleware/errorMiddleware");
 const connectDB = require("./config/db_config");
 
 connectDB();
 
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
